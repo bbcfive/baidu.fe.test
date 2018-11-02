@@ -1,0 +1,36 @@
+.body{
+	height:100%;
+}
+.content-wrapper{
+	overflow:hidden;//overflow针对的值是margin-bottom的值（已被提高至right的底部），超过mairgin-bottom的部分全被抹掉
+}
+
+.left{
+	font-size:20px;
+	width:200px;
+	float:left;
+	color:white;
+	background-color:rgb(101, 165, 250);
+	text-align:center;
+	padding-top:50px;
+	padding-bottom:3000px; 
+	margin-bottom:-3000px;
+	font-family: "宋体";
+}
+
+.right{
+	float:left;
+	margin-left:20px;
+	padding-bottom:3000px; 
+	margin-bottom:-3000px;
+}
+
+
+.bi{
+	display:inline;
+	font-family: "宋体";
+}
+
+.block{
+	margin-right:30px;
+}
