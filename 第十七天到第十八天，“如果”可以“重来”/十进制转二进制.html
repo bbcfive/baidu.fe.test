@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>       
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+
+    <script>  	
+
+		//检查是否为整数
+		function isInteger(obj) {
+		 return obj%1 === 0
+		}
+
+		function reverse(str) {
+			var newStr = '', i = str.length;
+			for(; i >= 0; i--) {
+			    newStr += str.charAt(i);
+			}
+			return newStr;
+		}			
+
+		//十进制转二进制
+		function dec2bin(decNumber) {
+			var remainder = '';
+			var quotient = 0;
+			while ( decNumber >= 2) {
+				quotient = (decNumber-decNumber%2)/2;
+				remainder += (decNumber%2).toString();		
+				decNumber = quotient;
+			}
+			var decNum = remainder + (decNumber%2).toString();
+			return reverse(decNum);			
+		}
+					
+		
+		// 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数OK
+		document.getElementById('trans-btn').onclick = function(){
+			var num = document.getElementById('dec-number').value;	
+			var bit = document.getElementById('bin-bit').value;	
+			if ( (isInteger(num)) && (num >= 0) ) {	
+				if (bit < dec2bin(num).length) {
+						alert("报个错!")
+						document.getElementById('result').innerHTML = dec2bin(num);						
+					}
+				else {
+						var cover = bit - dec2bin(num).length; //需要补的0的数量
+						var dec = dec2bin(num);
+						for (var i = cover; i > 0; i--) {
+							 dec = '0' + dec; 
+						}
+						document.getElementById('result').innerHTML = dec;		
+					}
+
+				}
+			else {
+					console.log('Input is not nonnegative integer!');
+				}
+		}
+	
+
+
+    </script>
+</body>
+</html>

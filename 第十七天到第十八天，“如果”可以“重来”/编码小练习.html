@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>     
+
+	<table>乘法口诀表
+		<tr>
+			<td id="1"></td>
+			<td id="2"></td>
+			<td id="3"></td>
+			<td id="4"></td>
+			<td id="5"></td>
+			<td id="6"></td>
+			<td id="7"></td>
+			<td id="8"></td>
+			<td id="9"></td>
+		</tr>
+		<tr>
+			<td id="10"></td>
+			<td id="11"></td>
+			<td id="12"></td>
+			<td id="13"></td>
+			<td id="14"></td>
+			<td id="15"></td>
+			<td id="16"></td>
+			<td id="17"></td>
+			<td id="18"></td>
+		</tr>
+		<tr>
+			<td id="19"></td>
+			<td id="20"></td>
+			<td id="21"></td>
+			<td id="22"></td>
+			<td id="23"></td>
+			<td id="24"></td>
+			<td id="25"></td>
+			<td id="26"></td>
+			<td id="27"></td>			
+		</tr>
+		<tr>
+			<td id="28"></td>
+			<td id="29"></td>
+			<td id="30"></td>
+			<td id="31"></td>
+			<td id="32"></td>
+			<td id="33"></td>
+			<td id="34"></td>
+			<td id="35"></td>
+			<td id="36"></td>			
+		</tr>
+		<tr>
+			<td id="37"></td>
+			<td id="38"></td>
+			<td id="39"></td>
+			<td id="40"></td>
+			<td id="41"></td>
+			<td id="42"></td>
+			<td id="43"></td>
+			<td id="44"></td>
+			<td id="45"></td>			
+		</tr>
+		<tr>
+			<td id="46"></td>
+			<td id="47"></td>
+			<td id="48"></td>
+			<td id="49"></td>
+			<td id="50"></td>
+			<td id="51"></td>
+			<td id="52"></td>
+			<td id="53"></td>
+			<td id="54"></td>			
+		</tr>
+		<tr>
+			<td id="55"></td>
+			<td id="56"></td>
+			<td id="57"></td>
+			<td id="58"></td>
+			<td id="59"></td>
+			<td id="60"></td>
+			<td id="61"></td>
+			<td id="62"></td>
+			<td id="63"></td>			
+		</tr>
+		<tr>
+			<td id="64"></td>
+			<td id="65"></td>
+			<td id="66"></td>
+			<td id="67"></td>
+			<td id="68"></td>
+			<td id="69"></td>
+			<td id="70"></td>
+			<td id="71"></td>
+			<td id="72"></td>			
+		</tr>
+		<tr>
+			<td id="73"></td>
+			<td id="74"></td>
+			<td id="75"></td>
+			<td id="76"></td>
+			<td id="77"></td>
+			<td id="78"></td>
+			<td id="79"></td>
+			<td id="80"></td>
+			<td id="81"></td>			
+		</tr>
+	</table>   
+    
+
+   <p id="time">Time</p>
+    
+    <script>  				
+
+    	/* 第一题：
+	    	3的小游戏，练习使用循环和条件语句，实现如下需求：
+			从1到100，以此在console输出各数字，但是，当数字为3的倍数或者含有3的时候，输出“PA”
+			比如：1,2,PA,4,5,PA,……,11,PA,PA,14,PA……
+		*/	
+		for (var i = 1; i <= 100; i++) {
+			//i.toString().indexOf('3'))可能取得值有-1,0,1；因此，不是布尔值，所以条件判断句要加>=0；
+			//所有条件判断中用布尔值做条件的地方都可以再检查一下
+			if ((i%3===0)||(i.toString().indexOf('3') >= 0)) {
+				//console.log('PA');
+			} else {
+				//console.log(i);
+			}
+			
+		}
+
+		/* 第二题：
+			小练习，练习使用循环实现一个九九乘法表
+			第一步，最低要求：在Console中按行输出 n * m = t
+			然后，尝试在网页中，使用table来实现一个九九乘法表
+		*/	
+		
+		var t = 0;
+		var arr = new Array;
+		for (var m = 1; m <= 9; m++) {
+			for (var n = 1; n <= 9; n++) {
+				t = m * n;
+				arr.push(t);
+			}
+		}
+		console.log(arr);
+
+
+		for (var n = 1; n <= 81; n++) {
+			document.getElementById(n).innerHTML = arr[n-1];
+		}
+
+
+		/*
+		今天最后一个练习，在你的简历中，实现一个，当用户访问页面的时候，根据当前时间，在页面中输出不同的问候语。
+		比如早上的时候，输出早上好，晚上的时候是晚上好。
+		*/
+
+		var myDate = new Date();
+		
+		if (myDate.getHours() < 9) {
+			document.getElementById('time').innerHTML = '早上好!';
+		} else if (myDate.getHours() < 14) {
+			document.getElementById('time').innerHTML = '中午好!';
+		} else if (myDate.getHours() < 18) {
+			document.getElementById('time').innerHTML = '下午好!';
+		} else {
+			document.getElementById('time').innerHTML = '晚上好!';
+		}
+
+
+    </script>
+</body>
+</html>
