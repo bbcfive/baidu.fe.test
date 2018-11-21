@@ -1,0 +1,79 @@
+<html>
+
+    <head>
+
+
+        <script type="text/javascript">
+
+            var opacity = 1;   
+
+            //淡出函数
+            function fadeOut() {
+                var obj = document.getElementById('fade-obj');
+                var btn = document.getElementById('fade-btn');
+                btn.disabled = true;
+                
+                obj.style.opacity = opacity;
+                opacity -= 0.1;
+
+                var t;
+                if (opacity<0) {  //动画结束后
+                    clearTimeout(t);
+                    btn.disabled = false;
+                    btn.innerHTML = '淡入';
+                    //console.log(opacity);
+                } else {
+                    t = setTimeout('fadeOut()',50); 
+                }
+
+            }
+
+            //淡入函数
+            function fadeIn() {
+                var obj = document.getElementById('fade-obj');
+                var btn = document.getElementById('fade-btn');
+                btn.disabled = true;
+                
+                obj.style.opacity = opacity;
+                opacity += 0.1;
+
+                var t;
+                if (opacity>1) {  //动画结束后
+                    clearTimeout(t);
+                    btn.disabled = false;
+                    btn.innerHTML = '淡出';
+                    //console.log(opacity);
+                } else {
+                    t = setTimeout('fadeIn()',50); 
+                }
+
+            }    
+
+            function changeOpacity() {
+                if(opacity < 0) {
+                    fadeIn();
+                }else {
+                    fadeOut();
+                }
+            }        
+
+
+        </script>
+    </head>
+
+    <body>
+
+
+
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+
+    <button id="fade-btn" onclick="changeOpacity()" >淡出</button>
+
+
+    <script type="text/javascript">
+       //console.log(document.getElementById('fade-btn'));
+    </script>
+
+
+    </body>
+</html>

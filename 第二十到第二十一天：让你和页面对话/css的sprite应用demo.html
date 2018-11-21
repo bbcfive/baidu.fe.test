@@ -1,0 +1,225 @@
+<!DOCTYPE>
+	<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>css sprite</title>
+		<style type="text/css">
+			.erik{
+				position: relative;
+				background-color:#CCDEDE;
+
+			}
+			.img{
+				width: 127mm;
+				height: 127mm;
+				margin:0 auto;
+			}
+			#one{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 0;
+				z-index: 17;
+			}
+			#two{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -127mm;
+				z-index: 16;
+			}
+			#three{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -254mm;
+				z-index: 15;
+			}	
+			#four{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -381mm;
+				z-index: 14;
+			}					
+			#five{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -508mm;
+				z-index: 13;
+			}
+			#six{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -635mm;
+				z-index: 12;
+			}
+			#seven{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -762mm;
+				z-index: 11;
+			}
+			#eight{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -889mm;
+				z-index: 10;
+			}
+			#nine{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -1016mm;
+				z-index: 9;
+			}	
+			#ten{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -1143mm;
+				z-index: 8;
+			}
+			#eleven{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -1270mm;
+				z-index: 7;
+			}
+			#twelve{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -1397mm;
+				z-index: 6;
+			}
+			#thirteen{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -1524mm;
+				z-index: 5;
+			}
+			#fourteen{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -1651mm;
+				z-index: 4;
+			}
+			#fifteen{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -1778mm;
+				z-index: 3;
+			}
+			#sixteen{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -1905mm;
+				z-index: 2;
+			}
+			#seventeen{
+				position: absolute;
+				background-image: url(erik.jpg); 
+				background-repeat: no-repeat;		
+				top: 0;
+				left: 0;
+				background-position: 0 -2032mm;
+				z-index: 1;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="erik" id="type">
+		    <div class="img" id="one"></div>
+		    <div class="img" id="two"></div>
+		    <div class="img" id="three"></div>
+		    <div class="img" id="four"></div>
+		    <div class="img" id="five"></div>
+		    <div class="img" id="six"></div>
+		    <div class="img" id="seven"></div>
+		    <div class="img" id="eight"></div>
+		    <div class="img" id="nine"></div>
+		    <div class="img" id="ten"></div>
+		    <div class="img" id="eleven"></div>
+		    <div class="img" id="twelve"></div>
+		    <div class="img" id="thirteen"></div>
+		    <div class="img" id="fourteen"></div>
+		    <div class="img" id="fifteen"></div>
+		    <div class="img" id="sixteen"></div>
+		    <div class="img" id="seventeen"></div>
+		</div>
+
+		<script type="text/javascript">
+
+
+			var img = document.getElementsByClassName('img');
+			var len = img.length;
+
+
+			var i = 0;
+			var t; 
+			setInterval(function(){
+				if (i<16){
+					img[i].style.visibility = 'hidden';
+					i+=1;							
+				}  else {
+					clearInterval(t);
+				}	
+			},40);
+
+			
+			/*for (var i = 0; i < len; i++) {
+
+				...............
+				
+				如何在循环内部实现sleep？await？pause？	
+				
+				可以尝试下，自己实现一个sleep函数。			
+
+			}*/
+
+		</script>
+	</body>
+</html>

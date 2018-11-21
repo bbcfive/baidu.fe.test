@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+	
+	<script type="text/javascript">
+
+
+		function time(){
+
+
+			//下列四行，必须放入函数内部
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();	
+	
+
+			m = check(m);	
+			s = check(s);	
+
+			document.getElementById('time').value =  h + ':' + m + ':' + s;			
+
+			//嵌套循环的还是函数内部的值，不会自动更新新值
+			var t = setTimeout("time()", 500); 		
+
+			document.getElementById('today').value =  today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();	
+
+			var hh =  today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();		
+			
+			//console.log(hh);
+		}
+
+
+		function check(i){
+			if (i<10) {
+				i = '0' + i;
+			}
+			return i;
+		}
+
+
+	</script>
+</head>
+<body onload="time()">            
+    
+    <input id="time">
+    <input id="today">
+
+</body>
+</html>

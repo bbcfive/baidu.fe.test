@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+
+    <script type="text/javascript">
+        var c = 0;
+        var t;
+        function start() {
+            document.getElementById('txt').value = c;
+            c = c + 1;
+            t = setTimeout("start()",1000);
+        }
+
+        function stop() {
+            clearTimeout(t);
+            c = 0;
+            document.getElementById('txt').value = c;
+        }
+    </script>
+</head>
+<body>            
+
+    <input type="button" name="start" id="start" onclick="start()" value="开始计时">
+    <input type="number" name="value" id="txt">
+    <input type="button" name="stop" id="stop" onclick="stop()" value="停止计时">
+
+</body>
+</html>
