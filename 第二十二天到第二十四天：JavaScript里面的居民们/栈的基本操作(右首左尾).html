@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>栈的基本操作(右首左尾)</title>
+</head>
+<body>
+	<input id="stack-input" type="text">
+	<p id="stack-cont">栈内容：apple-&gt;pear</p>    
+	<button id="btn1">进栈</button>
+	<button id="btn2">退栈</button>
+	<button id="btn3">打印栈顶元素内容</button>
+	<button id="btn4">判断栈是否为空</button>
+
+	<script>
+
+		var stack = ["apple", "pear"];
+		var stackInput = document.getElementById('stack-input');
+		var stackCont = document.getElementById('stack-cont');
+
+		btn1.onclick = function() {
+			stack.push(stackInput.value);
+			stackCont.innerHTML = '栈内容：' + stack.join('->');
+		}
+
+		btn2.onclick = function() {
+			stack.pop();
+			stackCont.innerHTML = '栈内容：' + stack.join('->');
+		}
+
+		btn3.onclick = function() {
+			stackCont.innerHTML = stack[stack.length-1];
+		}
+
+		btn4.onclick = function() {
+			if (stack.length == 0) stackCont.innerHTML = '这是个空栈。';
+			else stackCont.innerHTML = '栈有' + stack.length + '个元素。' ;			
+		}
+
+
+	</script>
+</body>
+</html>

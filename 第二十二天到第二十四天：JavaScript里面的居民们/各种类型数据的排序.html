@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>各种类型数据的排序</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+
+		function smallToBig(a,b) {
+			return a - b
+		}
+
+		function bigToSmall(a,b) {
+			return b - a
+		}
+
+		//将上面的二维数组，按照每个元素中第二个数从大到小的顺序进行排序输出
+		function sortArr(arr) {
+			var array = [];
+			for (var i = 0; i < arr.length-1; i++) {
+				if (arr[i+1][1] > arr[i][1]) {
+					array = arr[i];
+					arr.splice(i,1,arr[i+1]);
+					arr.splice(i+1,1,array);
+					sortArr(arr);//双循环无敌诶！或者，这个排序算法的复杂度就是log(n^2);
+				}
+			}
+			return arr;
+		}
+
+		//将上面数组分别按元素对象的value值从小到大进行排序后输出
+		function sortArrObj(arr) {
+			for (var i = 0; i < arr.length-1; i++) {
+				var array = [];
+				if (arr[i+1]['value'] < arr[i]['value']) {
+					array = arr[i];
+					arr.splice(i,1,arr[i+1]);
+					arr.splice(i+1,1,array);
+					sortArrObj(arr);
+				}				
+			}
+			return arr;
+		}
+
+		//将上面数组分别按从大到小以及从小到大进行排序后在console中输出
+		var arr1 = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+		console.log(arr1.sort(smallToBig));
+		console.log(arr1.sort(bigToSmall));
+
+		//将上面数组分别按字母顺序a-z及z-a进行排序，在console中输出
+		var arr2 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+		console.log(arr2.sort());
+		console.log(arr2.sort().reverse());
+
+		//将上面的二维数组，按照每个元素中第二个数从大到小的顺序进行排序输出，输出结果应该为：
+		var arr3 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+		console.log(sortArr(arr3));
+
+		//将上面数组分别按元素对象的value值从小到大进行排序后输出
+		var arr4 = [
+		    {
+		        id: 1,
+		        name: 'candy',
+		        value: 40
+		    }, {
+		        id: 2,
+		        name: 'Simon',
+		        value: 50
+		    }, {
+		        id: 3,
+		        name: 'Tony',
+		        value: 45
+		    }, {
+		        id: 4,
+		        name: 'Annie',
+		        value: 60
+		    }
+		];
+		console.log(sortArrObj(arr4));
+	</script>
+
+</body>
+</html>

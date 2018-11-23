@@ -1,0 +1,79 @@
+<html>
+	<body>
+
+		<script type="text/javascript">
+
+			/*
+			实现一个字符串头尾去除空格的函数
+			注意需要去除的空格，包括全角、半角空格
+			暂时不需要学习和使用正则表达式的方式
+			*/
+			function diyTrim(str) {
+			    var result = "";
+			    var start, end;
+
+			 	//计算end
+			    for (var m = 0; m < str.length; m++) {
+			    	if (str[m] != 0) end = m;	    	
+			    }
+
+			    //计算start
+	    		for (var n = str.length; n >0 ; n--) {
+					if (str[n] != 0) start = n;			
+				}
+
+				if (start < end) result = str.slice(start,end+1);
+				else  result = str[end];
+
+				//字符串全是空格
+				if (end == undefined) result = '';
+
+				//console.log(start,end);
+			    return result
+			}
+
+
+			// 测试用例
+			console.log(diyTrim(' a f b    ')); // ->a f b
+			console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+			console.log(diyTrim('1    ')); // ->1
+			console.log(diyTrim('　　f')); // ->f
+			console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+			console.log(diyTrim(' ')); // ->
+			console.log(diyTrim('　')); // ->
+			console.log(diyTrim('')); // ->
+
+			/*
+			去掉字符串str中，连续重复的地方
+			*/
+			function removeRepetition(str) {
+
+				var result = "";
+
+				//再次声明：str[i] = 'o', 这种修改字符串某位元素值的方式根本无效。 因为str[i]是引用/地址。
+				function deleteStr(s, i) {
+					return (s.substr(0,i)).concat(s.substr(i+1,s.length));
+				}
+
+			    var arr = new Array;
+			    for (var i = 0; i < str.length; i++) {
+			    	if (str[i+1] == str[i] ) arr.push(i+1);
+			    }
+			    for (var i = arr.length-1; i >= 0 ; i--) {
+			    	str = deleteStr(str,arr[i]);	
+			    	//console.log(str);
+			    }
+			    return str;
+			}
+
+			// 测试用例
+			console.log(removeRepetition("aaa")); // ->a
+			console.log(removeRepetition("abbba")); // ->aba
+			console.log(removeRepetition("aabbaabb")); // ->abab
+			console.log(removeRepetition("")); // ->
+			console.log(removeRepetition("abc")); // ->abc
+
+		</script>
+
+	</body>
+</html>

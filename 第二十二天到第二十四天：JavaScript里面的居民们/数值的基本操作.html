@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数值的基本操作</title>
+</head>
+<body>
+    <div> 
+        <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+        <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+    </div>
+
+    <div>
+        <button id="btna">判断当前选中的输入框输入内容是否为数字</button>
+        <button id="btnb">把 A 四舍五入为 B 个小数位数的数字</button>
+        <button id="btnc">当前选中数字的绝对值</button>
+        <button id="btnd">对当前选中的数字进行上舍入</button>
+        <button id="btne">对当前选中的数字进行下舍入</button>
+        <button id="btnf">把当前选中的数字四舍五入为最接近的整数</button>
+        <button id="btng">返回 A 和 B 中的最高值</button>
+        <button id="btnh">返回 A 和 B 中的最低值</button>        
+    </div>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        var a = 'a', b = 'b';
+        var result = document.getElementById('result');
+
+        //当前radio选中状态
+        function check(r) {
+            return document.getElementById("radio-" + r).checked;
+        }
+
+        //判断输入内容是否是数字函数
+        function judge(n){
+            var val = document.getElementById("num-" + n).value;
+            if (isNaN(val)) {alert('Error: This is not number type!');}  
+            else {console.log('fine');}
+        }
+
+        //判断当前选中的输入框输入内容是否为数字
+        btna.onclick = function() {
+            if (check(a)) judge(a);
+            else if (check(b)) judge(b);
+            else alert('Please choose at least one radio!');
+        }
+
+        //把 A 四舍五入为 B 个小数位数的数字
+        btnb.onclick = function() {
+            //判断输入是否为数字
+            judge(a);
+            judge(b);
+            var valuea = document.getElementById('num-a').value, valueb = document.getElementById('num-b').value;
+            valuea *=  Math.pow(10,valueb);
+            result.innerHTML = Math.round(valuea)/Math.pow(10,valueb);
+        }
+
+        /* 此乃方法原型 四舍五入的方法 math.round()，但只能保留整数;
+        var c = 3.14159, d = 3;
+        c *= Math.pow(10,d); 
+        console.log(Math.round(c)/Math.pow(10,d));
+        */
+
+        //当前选中数字的绝对值
+        btnc.onclick = function() {
+            judge(a);
+            judge(b);            
+            if (check(a)) result.innerHTML = Math.abs(document.getElementById('num-a').value);
+            else if (check(b)) result.innerHTML = Math.abs(document.getElementById('num-b').value);
+            else alert('Please choose at least one radio!');
+        }        
+
+        //对当前选中的数字进行上舍入
+        btnd.onclick = function() {
+            judge(a);
+            judge(b);
+            if (check(a)) result.innerHTML = Math.ceil(document.getElementById('num-a').value);
+            else if (check(b)) result.innerHTML = Math.ceil(document.getElementById('num-b').value);
+            else alert('Please choose at least one radio!');             
+        }
+
+        //对当前选中的数字进行下舍入
+        btne.onclick = function() {
+            judge(a);
+            judge(b);
+            if (check(a)) result.innerHTML = Math.floor(document.getElementById('num-a').value);
+            else if (check(b)) result.innerHTML = Math.floor(document.getElementById('num-b').value);
+            else alert('Please choose at least one radio!');             
+        }        
+
+        //把当前选中的数字四舍五入为最接近的整数
+        btnf.onclick = function() {
+            judge(a);
+            judge(b);
+            if (check(a)) result.innerHTML = Math.round(document.getElementById('num-a').value);
+            else if (check(b)) result.innerHTML = Math.round(document.getElementById('num-b').value);
+            else alert('Please choose at least one radio!');             
+        }         
+
+        //返回 A 和 B 中的最高值
+        btng.onclick = function() {
+            judge(a);
+            judge(b);
+            var valuea = document.getElementById('num-a').value, valueb = document.getElementById('num-b').value;
+            result.innerHTML = Math.max(valuea,valueb);
+        }
+
+        //返回 A 和 B 中的最低值   
+        btnh.onclick = function() {
+            judge(a);
+            judge(b);
+            var valuea = document.getElementById('num-a').value, valueb = document.getElementById('num-b').value;
+            result.innerHTML = Math.min(valuea,valueb);
+        }  
+    </script>
+        
+
+</body>
+</html>
+

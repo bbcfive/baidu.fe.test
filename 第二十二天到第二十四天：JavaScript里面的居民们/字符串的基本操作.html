@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>字符串的基本操作</title>
+</head>
+<body>
+    <div>
+        <label>String A:
+            <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+        </label>
+        <textarea id="str-a"></textarea>
+        <label>String B:
+            <input id="radio-b" type="radio" name="str-obj" value="b">
+        </label>
+        <textarea id="str-b"></textarea>        
+        <label>Num A：<input id="num-a" type="number" value="0"></label>
+        <label>Num B：<input id="num-b" type="number" value="1"></label>
+    </div>
+    <div>
+        <button id="btna">获取当前选中输入的内容长度</button>
+        <button id="btnb">当前选中输入中的第3个字符</button>
+        <button id="btnc">把两个输入框的文字连接在一起输出（concat）</button>
+        <button id="btnd">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+        <button id="btne">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+        <button id="btnf">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+        <button id="btng">当前选中输入框的行数</button>
+        <button id="btnh">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+        <button id="btni">把所选输入框中的内容全部转为大写</button>
+        <button id="btnj">把所选输入框中的内容全部转为小写</button>
+        <button id="btnk">把所选输入框中内容的半角空格全部去除</button>
+        <button id="btnl">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+    </div>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        var a = 'a', b = 'b';
+        var result = document.getElementById('result');
+
+        //当前radio选中状态
+        function check(r) {
+            return document.getElementById("radio-" + r).checked;
+        }      
+
+        //获取当前选中输入的内容长度
+        btna.onclick = function() {
+            if (check(a)) result.innerHTML = document.getElementById('str-a').value.length;
+            if (check(b)) result.innerHTML = document.getElementById('str-b').value.length;
+        }  
+
+        //当前选中输入中的第3个字符
+        btnb.onclick = function() {
+            if (check(a)) result.innerHTML = document.getElementById('str-a').value[2];
+            if (check(b)) result.innerHTML = document.getElementById('str-b').value[2];
+        }  
+
+        //把两个输入框的文字连接在一起输出（concat）
+        btnc.onclick = function() {
+            result.innerHTML = (document.getElementById('str-a').value).concat(document.getElementById('str-b').value); //直接用+也可以哇
+        }
+
+        //输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）
+        btnd.onclick = function() {
+            result.innerHTML = (document.getElementById('str-a').value).indexOf(document.getElementById('str-b').value);
+        }
+
+        //输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）
+        btne.onclick = function() {
+            result.innerHTML = (document.getElementById('str-b').value).lastIndexOf(document.getElementById('str-a').value);
+        }
+
+        //使用slice获取选中输入框内容的部分内容，参数为num-a及num-b
+        btnf.onclick = function() {
+            var numa = document.getElementById('num-a').value, numb = document.getElementById('num-b').value;
+            var str = '';
+            if (check(a)) str = (document.getElementById('str-a').value).slice(numa,numb);
+            if (check(b)) str = (document.getElementById('str-b').value).slice(numa,numb);
+            result.innerHTML = str;
+        }
+
+        //当前选中输入框的行数!!!这里存在一个问题：当用换行键换行时，行数并不会加1，所以，如何把换行键的次数也加上？   
+        btng.onclick = function() {
+            var cola = document.getElementById('str-a').cols, colb = document.getElementById('str-b').cols;
+            var lena = document.getElementById('str-a').value.length, lenb = document.getElementById('str-b').value.length;
+            if (check(a)) result.innerHTML = Math.ceil(lena/cola);
+            if (check(b)) result.innerHTML = Math.ceil(lenb/colb);
+        }
+
+        //使用substr获取选中输入框内容的子字符串，参数为num-a及num-b
+         btnh.onclick = function() {
+            var numa = document.getElementById('num-a').value, numb = document.getElementById('num-b').value;
+            var str = '';
+            if (check(a)) str = (document.getElementById('str-a').value).substr(numa,numb);
+            if (check(b)) str = (document.getElementById('str-b').value).substr(numa,numb);
+            result.innerHTML = str;
+        }
+       
+        //把所选输入框中的内容全部转为大写
+        btni.onclick = function() {
+            if (check(a)) result.innerHTML = document.getElementById('str-a').value.toUpperCase();
+            if (check(b)) result.innerHTML = document.getElementById('str-b').value.toUpperCase();;  
+        }
+
+        //把所选输入框中的内容全部转为小写
+        btnj.onclick = function() {
+            if (check(a)) result.innerHTML = document.getElementById('str-a').value.toLowerCase();
+            if (check(b)) result.innerHTML = document.getElementById('str-b').value.toLowerCase();  
+        }
+
+        //把所选输入框中内容的半角空格全部去除
+        btnk.onclick = function() {
+            if (check(a)) result.innerHTML = (document.getElementById('str-a').value.split(" ")).join('');
+            if (check(b)) result.innerHTML = (document.getElementById('str-b').value.split(" ")).join('');    
+        }
+
+        //把所选输入框中内容的a全部替换成另外一个输入框中的内容
+         btnl.onclick = function() {
+
+            //这个函数是今日思想的结晶。今天遇到的关于“所选按钮”的问题，统统都以“if (check(a/b))的形式解决，这个函数从根本上解决了所选函数的问题。即，只要掌握了逻辑运算，就可以大规模的使用此函数。
+            /* (逻辑与&&的权重>逻辑或||)
+            a || b || c = a  //逻辑或以首位为准
+            a && b && c = c  //逻辑与以末位为准
+            a || b && c = a  // a || (b && c)
+            a && b || c = b  // (a && b) || c
+            */ 
+
+            function choice(m,n) {
+                return document.getElementById('str-' + (m||n)).value;
+            }   
+
+            function alternative(num1,num2){
+                var obj = choice(num1,num2);
+                var len = obj.length;
+                var object = obj;
+                for (var i = 0; i < obj.length; i++) {
+                    if(obj[i] == 'a') object = object.replace('a',choice(num2,num1));
+                }
+                return object;
+            }
+
+           
+            if (check(a)) result.innerHTML = alternative(a,b);
+            if (check(b)) result.innerHTML = alternative(b,a); 
+        }   
+        
+
+        /*
+        全局替换的另一种简单方法——正则表达式
+        str.replace(/a/g, "o")  g = globle
+        
+        如何使用 replace() 确保大写字母的正确性。(对大小写不敏感的搜索)
+        str.replace(/a/i, "A")
+        
+        如何使用 replace() 来转换姓名的格式。
+        name = "Doe, John";
+        name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1")
+        //John Doe
+
+        如何使用 replace() 来转换引号。
+        name = '"a", "b"';
+        name.replace(/"([^"]*)"/g, "'$1'")
+        //'a', 'b'
+
+        如何使用 replace() 把单词的首字母转换为大写。
+        name = 'aaa bbb ccc';
+        uw=name.replace(/\b\w+\b/g, function(word){  //(/\b\w+\b/g) -> 文本域全选的意思
+            return word.substring(0,1).toUpperCase()+word.substring(1);}
+        );
+        //Aaa Bbb Ccc
+        */
+    </script>
+</body>
+</html>

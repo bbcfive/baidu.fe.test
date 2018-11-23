@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>队列的基本操作(左首右尾)</title>
+</head>
+<body>
+	<input id="queue-input" type="text">
+	<p id="queue-cont">队列内容：apple&lt;-pear</p>    
+	<button id="btn1">入队</button>
+	<button id="btn2">出队</button>
+	<button id="btn3">打印队头元素内容</button>
+	<button id="btn4">判断队列是否为空</button>
+
+	<script>
+
+		var queue = ["apple", "pear"];
+		var queueInput = document.getElementById('queue-input');
+		var queueCont = document.getElementById('queue-cont');		
+
+		btn1.onclick = function() {
+			queue.unshift(queueInput.value);
+			queueCont.innerHTML = '队列内容：' + queue.join('<-');
+		}
+
+		btn2.onclick = function() {
+			queue.pop();
+			queueCont.innerHTML = '队列内容：' + queue.join('<-');
+		}
+
+		btn3.onclick = function() {
+			queueCont.innerHTML = queue[0];
+		}
+
+		btn4.onclick = function() {
+			if (queue.length == 0) queueCont.innerHTML = '这是个空队列。';
+			else queueCont.innerHTML = '队列有' + queue.length + '个元素。' ;			
+		}
+	
+	</script>
+</body>
+</html>
