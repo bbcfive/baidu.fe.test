@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>对象转数组练习</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var scoreObject = {
+		    "Tony": {
+		        "Math": 95,
+		        "English": 79,
+		        "Music": 68
+		    }, 
+		    "Simon": {
+		        "Math": 100,
+		        "English": 95,
+		        "Music": 98
+		    }, 
+		    "Annie": {
+		        "Math": 54,
+		        "English": 65,
+		        "Music": 88
+		    }
+		}
+		
+
+		//对象转换成数组函数
+		function transObjIntoArr(object) {
+
+			//根据所需转化的对象的大小生成一个空数组容器
+			function arrayGenerate(obj) {
+				var array = new Array;
+				for (var x in obj)	{
+					array.push([]); //此处很关键，不能推数组变量
+				}						
+				return array; 	
+			}
+			
+			//定义一个二维数组
+			var arr = arrayGenerate(object);
+			var i = 0;
+
+			//把对象拆分后装进数组
+			function splitIntoArr(obj) {				
+				if (typeof obj == 'object') {
+					for (var x in obj) {			
+						if (typeof obj[x] == 'object') {	
+							arr[i].push(x);				
+							splitIntoArr(obj[x]);				
+							i ++;									
+						}else {
+							arr[i].push(obj[x]);			
+						}
+					}	 
+				}
+				return arr;
+			}		
+			return splitIntoArr(object);
+		}
+		
+		
+
+
+
+
+ 		console.log(transObjIntoArr(scoreObject));			
+		
+
+
+
+
+	</script>
+</body>
+</html>
