@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<p id="time1"></p>
+	<p id="time2"></p>
+
+	<script type="text/javascript">
+		
+		//成功封装的一个函数，显示当前日期
+		function timeNO1() {
+			/*
+			坑详解：
+			1.setInterval外没有函数时，函数要用""包起来，才能持续运行
+			2.setInterval有层父函数时，""包起来会提示，找不到colck()函数，不包起来函数只会运行一次；此时要删除""和(),只保留clock字样，方可持续运行
+			*/
+
+			setInterval(clock,50);
+
+			function getWeekdays(day) {
+				var weeks = ["日","一","二","三","四","五","六"];
+				return weeks[day];
+			}
+
+			function check(i) {
+				if (i < 10) 
+					i = "0" + i;
+				return i;
+			}
+
+			function clock() {
+				var time = document.getElementById('time');
+				var today = new Date();	
+				var year = today.getFullYear();
+				var month = check(today.getMonth());
+				var day = check(today.getDate());
+				var weekday = getWeekdays(today.getDay());
+				var hour = check(today.getHours());
+				var minute = check(today.getMinutes());
+				var second = check(today.getSeconds());
+
+				time1.innerHTML = year + '年' + month + '月' + day + '日  ' + '星期' + weekday + "  " + hour + ":" + minute + ":" + second;
+			} 
+		}
+
+		function timeNO2() {
+
+			setInterval(clock,50);
+
+			function getWeekdays(day) {
+				var weeks = ["Sunday","Monday","Tuesday","Wenseday","Thursday","Friday","Saterday"];
+				return weeks[day];
+			}
+
+			function check(i) {
+				if (i < 10) 
+					i = "0" + i;
+				return i;
+			}
+
+			function apm(i) {
+				if (i <= 12)
+					return "AM";
+				else 
+					return "PM";
+			}
+
+			function clock() {
+				var time = document.getElementById('time');
+				var today = new Date();	
+				var year = today.getFullYear();
+				var month = check(today.getMonth());
+				var day = check(today.getDate());
+				var weekday = getWeekdays(today.getDay());
+				var hour = check(today.getHours());
+				var minute = check(today.getMinutes());
+				var second = check(today.getSeconds());
+				var ap= apm(hour);
+
+				time2.innerHTML = year + '-' + month + '-' + day + '  ' + weekday + "  " + hour + ":" + minute + ":" + second + "  " + ap;
+			} 
+		}
+
+		timeNO1();
+		timeNO2();
+
+	</script>
+</body>
+</html>
