@@ -1,0 +1,17 @@
+body{
+	font-family: Profont;
+}
+.wrapper{
+	width: 25%;
+}
+ul{
+	list-style: none;
+	color: gray;
+	margin: 0;
+	padding-left: 0px;
+	font-size: 0.8em;
+	width: 170px;
+}
+ul:hover{
+	cursor:pointer;
+}

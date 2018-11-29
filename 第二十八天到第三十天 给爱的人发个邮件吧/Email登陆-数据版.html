@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="stylesheet" type="text/css" href="Email登陆功能.css">
+</head>
+<body>
+
+	<div class="wrapper">
+	    <input id="email-input" type="text">
+	    <ul id="email-sug-wrapper" class="email-sug" ></ul>
+	</div>
+
+	
+	<script type="text/javascript">
+		//！！！display:block,none是可以循环改变的 但visibility和hidden一经改变就无法复原
+		
+		//自动获取焦点
+		document.getElementById("email-input").focus();
+
+		//定义一个键盘事件的索引
+		var index;
+		
+		//用浏览器内部转换器实现html转码
+		function encoding(html){
+			//1.首先动态创建一个容器标签元素，如div
+			var temp = document.createElement ("div");
+			//2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐。google支持)
+			(temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+			//3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+			var output = temp.innerHTML;
+			temp = null;
+			return output;
+		}
+
+		//用浏览器内部转换器实现html解码
+		function decoding(text) {
+            //1.首先动态创建一个容器标签元素，如DIV
+            var temp = document.createElement("div");
+            //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+            temp.innerHTML = text;
+            //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;			
+		}
+
+		//键盘input输入的监听
+		$("input").keyup(function() {
+			if (event.keyCode != 13 && event.keyCode != 38 && event.keyCode != 40) {
+				reset();
+			}
+			document.getElementById("email-sug-wrapper").style.display = "block";	
+			emailSugestion();
+			controller();
+			$("li").hover(function(){
+				this.style.backgroundColor = "rgb(189,224,234)";
+			}, function(){
+				this.style.backgroundColor = "#fff";
+			});
+		}); 
+
+		//监听键盘事件
+		$(".wrapper").keyup(function(e){
+			var list = document.getElementsByTagName("li");
+			var e = e || event;
+			if (list.length > 0) {
+				//ENTER
+				if (e.keyCode == 13) {
+					document.getElementById("email-input").value = list[index].innerHTML; 
+					document.getElementById("email-sug-wrapper").style.display = "none";	
+				}
+				//up
+				if (e.keyCode == 38) {
+					if ( ((index-1) >= 0) && (index <= list.length-1)) 
+						index--;	 
+					else index = list.length-1;
+					//console.log("up",index);
+				} 
+				//down
+				if (e.keyCode == 40) { 
+					if ((index >= 0) && ((index+1) <= list.length-1)) 
+						index++;
+					else index = 0;
+					//console.log("down", index);
+				}
+				//ESC
+				$("input").keydown(function(event) {
+					var input = document.getElementById("email-input");
+					if (event.keyCode == 27) 
+						input.select();
+				}); 
+				
+				color();				
+			}
+		});	
+
+		//给选定元素设置bg-color
+		function color() {
+			var list = document.getElementsByTagName("li");
+			//console.log(index,list[index],list);
+			list[index].style.backgroundColor = "rgb(255,197,207)";	
+			for (var i = 0; i < list.length; i++) {
+				if (i != index) 
+					list[i].style.backgroundColor = "#fff";
+			}						
+		}
+
+		//重置选中状态
+		function reset() {
+			index = 0;
+		}					
+
+		//用户鼠标输入的监听
+		document.getElementById("email-sug-wrapper").onclick = function(e) {
+			var t = e.target;
+			document.getElementById("email-input").value = decoding(t.innerText);
+			document.getElementById("email-sug-wrapper").style.display = "none";
+			document.getElementById("email-input").focus();
+		}
+
+		// 邮箱后缀List参考
+		var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+
+		//获取用户输入
+		function getUserInput() {
+			var content = document.getElementById("email-input").value;
+			return $.trim(content);				
+		}
+
+		//生成提示框中的提示内容,将提示内容添加到email-sug-wrapper中
+		function emailSugestion() {
+			var userInput = encoding(getUserInput());
+			var userlist = document.getElementById("email-sug-wrapper");	
+
+			//删除重复内容
+			function deleteNode() {
+				while ( userlist.hasChildNodes() ) {
+					userlist.removeChild(userlist.firstChild);
+				}				
+			}
+
+			var i = userInput.indexOf('@');
+			if (i > 0) {
+				userInputPre = userInput.substr(0,i);
+				var str = userInput.substr(i+1,userInput.length);			
+			}
+			
+
+			//满足前缀的次数和循环的次数
+			var time = 0, circle = 0;
+
+			deleteNode();
+			//遍历postfixList,把用户输入和每一个postfix进行结合成为每一个Li
+			for (var x = 0; x < postfixList.length; x++) {	
+				if (i > 0){
+					//@后有字符，开始匹配
+					if (str.length > 0) {
+						//含有 @ 符号时，选取用户输入的@前面的字符来和后缀拼接	
+						if (postfixList[x].indexOf(str) == 0) {
+		 					var list = document.createElement("li");
+							var listArea = document.createTextNode(userInputPre + "@" + postfixList[x]);							
+							time++;					
+						} 		
+
+					circle++;
+
+					//@后无字符，输出全部				
+					} else {
+		 				var list = document.createElement("li");
+						var listArea = document.createTextNode(userInputPre + "@" + postfixList[x]);						
+					}
+					
+					//当用户输入不满足任何前缀匹配时，则显示全部提示			
+					if (circle == 5 && time == 0) {
+						deleteNode();
+						for (var y = 0; y < postfixList.length; y++) {
+							var list = document.createElement("li");
+							var listArea = document.createTextNode(userInputPre + "@" + postfixList[y]);	
+							addToLise();		
+						}
+					}									
+				}else {
+					var list = document.createElement("li");
+					var listArea = document.createTextNode(userInput + "@" + postfixList[x]);			
+				}
+				addToLise();
+							
+				//将新文本内容添加至新li中，将新节点li添加至ul中
+				function addToLise() {
+					if (listArea != undefined) {
+						list.appendChild(listArea);
+						userlist.appendChild(list);							
+					}		
+				}	
+			}
+		}
+
+		//控制email-sug-wrapper的显示/隐藏状态
+		function controller() {
+			if (getUserInput()) {
+				document.getElementById("email-sug-wrapper").style.display = "block";
+			} else {
+				document.getElementById("email-sug-wrapper").style.display = "none";
+			}
+		}
+	</script>
+
+</body>
+</html>
