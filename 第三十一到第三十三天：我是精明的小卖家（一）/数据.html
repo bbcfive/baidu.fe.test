@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">    
+	<title></title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="stylesheet" type="text/css" href="数据.css">
+</head>
+<body>
+	<select id="product">
+		<option id="mobile">手机</option>
+		<option id="notepad">笔记本</option>
+		<option id="smartbox">智能音箱</option>
+	</select>
+	
+	<select id="region">
+		<option id="east">华东</option>
+		<option id="sourth">华南</option>
+		<option id="north">华北</option>
+	</select>
+	<br>
+	<span>商品：
+		<input type="checkbox" name="product" id="mobileSelect" value="手机">手机	
+		<input type="checkbox" name="product" id="notepadSelect" value="笔记本">笔记本	
+		<input type="checkbox" name="product" id="smartSelect" value="智能音箱">智能音箱
+		<input type="checkbox" name="product" id="allSelectProd" value="商品全选">全选		
+	</span>
+	<br>
+	<span>地区：
+		<input type="checkbox" name="region" id="eastSelect" value="华东">华东	
+		<input type="checkbox" name="region" id="sourthSelect" value="华南">华南	
+		<input type="checkbox" name="region" id="northSelect" value="华北">华北
+		<input type="checkbox" name="region" id="allSelectRegi" value="地区全选">全选	
+	</span>
+
+
+	<div id="table-wrapper">
+		<table>
+			<tr>
+				<th>商品</th>
+				<th>地区</th>
+				<th>1月</th>
+				<th>2月</th>
+				<th>3月</th>
+				<th>4月</th>
+				<th>5月</th>
+				<th>6月</th>
+				<th>7月</th>
+				<th>8月</th>
+				<th>9月</th>
+				<th>10月</th>
+				<th>11月</th>
+				<th>12月</th>
+			</tr>		
+			<tr>
+				<td id="productData"></td>
+				<td id="regionData"></td>	
+				<td id="salesData"></td>	
+			</tr>	
+		</table>
+	</div>
+
+	<script rel="stylesheet" src="data.js" ></script>
+	<script type="text/javascript" src="数据传值.js"></script>
+	<script type="text/javascript" src="数据渲染.js"></script>
+</html>

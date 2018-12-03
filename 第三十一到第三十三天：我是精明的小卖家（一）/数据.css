@@ -1,0 +1,39 @@
+table{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th{
+	margin-bottom: .5px;
+	padding: 2px;
+	border: .5px solid black;
+	display: inline-block;
+	border-right: none;
+}
+th:last-child{
+	border-right: .5px solid black;
+}
+tr{
+	display: flex;
+}
+#productData td,#regionData td,#salesData td{
+	margin: -1px;
+	padding: 1px;
+	border: .5px solid black;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	border-bottom: none;
+	border-right: none;
+}
+#productData td:last-child,#regionData td:last-child{
+	border-bottom: .5px solid black;	
+}
+#salesData td{
+	border-right: .5px solid black;
+}
+#salesData td:last-child{
+	border-bottom: .5px solid black;
+}
+
+
