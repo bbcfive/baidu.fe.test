@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数据可视化</title>
+	<script type="text/javascript" src="data.js"></script>
+	<style type="text/css">
+		label {
+			float: left;
+		}
+		#product-radio-wrapper, #region-radio-wrapper{
+			width: 100px;
+			float: left;
+			margin: 10px;
+			border: 1px solid red;
+			border-radius: 5px;
+		}
+		#select {
+			display: flex;
+		}
+
+		#svg-wrapper {
+			width: 49.5%;
+			float: left;
+			border: 1px solid gray;
+			border-radius: 10px;
+		}
+
+		#canvas-wrapper {
+			width: 49.5%;
+			float: right;
+			border: 1px solid gray;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="select">
+		<label for="product-radio-wrapper">商品：</label>
+		<div id="product-radio-wrapper"></div>
+		<label for="region-radio-wrapper">地区：</label>
+		<div id="region-radio-wrapper"></div>
+	</div>
+	<div id="svg-wrapper"></div>
+	<div id="canvas-wrapper"></div>
+	<div id="table-wrapper"></div>
+	
+	<script type="text/javascript" src="bar.js"></script>
+	<script type="text/javascript" src="line.js"></script>
+	<script type="text/javascript" src="checkbox.js"></script>
+</body>
+</html>
