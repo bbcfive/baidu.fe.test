@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数据可视化</title>
+	<script type="text/javascript" src="ife31data.js"></script>
+	<style type="text/css">
+		table {
+			border-collapse: collapse;
+		}
+
+		table tr:hover > td {
+			background-color: aquamarine;
+		}
+
+		table th {
+			padding: 2px 4px;
+			margin: 0;
+			width: 70px;
+			border: 1px black solid;
+			background-color: aqua;
+		}
+
+		table td {
+			padding: 2px 4px;
+			margin: 0;
+			width: auto;
+			border: 1px black solid;
+			background-color: floralwhite;
+		}
+
+		span {
+			opacity: 0;
+		}
+
+		table td:hover > span{
+			opacity: 1;
+			border: none;
+			background-color: aquamarine;
+			color: gray;
+			cursor: pointer;
+		}
+
+		#select {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		label{
+			margin-left: 20px;
+		}
+
+		#product-radio-wrapper, #region-radio-wrapper{
+			width: 100px;
+			display: inline-block;
+			border: 1px solid gray;
+			border-radius: 5px;
+		}
+
+		#svg-wrapper {
+			display: inline-block;
+			border: 1px solid gray;
+			border-radius: 10px;
+		}
+
+		#canvas-wrapper {
+			display: inline-block;
+			border: 1px solid gray;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="select">
+		<label for="product-radio-wrapper">商品：</label>
+		<div id="product-radio-wrapper"></div>
+		<label for="region-radio-wrapper">地区：</label>
+		<div id="region-radio-wrapper"></div>
+	</div>
+	<div id="svg-wrapper"></div>
+	<div id="canvas-wrapper"></div>
+	<div id="table-wrapper"></div>
+	
+	<script type="text/javascript" src="bar.js"></script>
+	<script type="text/javascript" src="line.js"></script>
+	<script type="text/javascript" src="checkbox.js"></script>
+	<script type="text/javascript" src="table.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
